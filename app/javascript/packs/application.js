@@ -14,22 +14,25 @@ document.addEventListener('turbolinks:load', () => {
 })
 
 $(() => {
+	let n = 0
 	window.showNotification = function(string) {
-		$('#notification').html(
+		n += 1
+		$('#notification').append(
 			`
-				<div id="notification-fade"><div class="alert alert-success fade show slow" role="alert">
+				<div class="notification-fade-${n}"><div class="alert alert-success fade show slow" role="alert">
 					${string}
 
-					<button type="button" class="close" data-dismiss="alert" aira-label="close">
+					<button type="button" class="close" data-dismiss="alert" aria-label="close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div></div>
 			`
 		)
 
+		let notification = `.notification-fade-${n}`
 		setTimeout(() => {
-			$('#notification-fade').fadeOut(500)
-		}, 2000)
+			$(notification).fadeOut(500)
+		}, 5000)
 	}
 
 	window.wait = function() {
@@ -38,13 +41,11 @@ $(() => {
 
 	window.copy = function() {
 		var copyText = 'copy'
-		var string = $('#puts').html()
+		var string = $('#puts').val().toString()
 
-		if ( string.length < 1 || !/[^\d\.]/.test(string) ) {
+		if ( string.length < 1 || /[^\d\.]/.test(string) ) {
 			showNotification('Nothing to copy!')
-		}
-
-		else {
+		} else {
 			var copyHelper = document.createElement('input')
 			copyHelper.className = 'copy-helper'
 			document.body.appendChild(copyHelper)
@@ -60,10 +61,6 @@ $(() => {
 			}, 2000)
 		}
 	}
-
-	// $('#numberField').change(function() {
-	// 	this.value <= 0
-	// })
 })
 
 window.$ = $

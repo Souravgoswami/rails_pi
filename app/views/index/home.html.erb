@@ -1,28 +1,30 @@
-<div class="container-fluid">
-	<div class="jumbotron bg-image">
-		<h2 class="centrify mb-4">Pi Calculator</h2>
+<div class="center">
+	<div class="container-fluid">
+		<div class="jumbotron jumbotron-bg">
+			<h2 class="centrify mb-4">Pi Calculator</h2>
 
-		<%= form_tag calculate_path, { method: 'patch', remote: true, id: 'mainForm', class: 'form-group width-100' } do %>
-			<div class="row">
-				<div class="col-md-10">
-					<%= number_field_tag :digits, params[:digits], min: 1, step: 1, value: 100, id: 'numberField', class: 'form-control input-sm', autocomplete: 'off', required: true %>
-				</div>
+			<%= form_tag calculate_path, { method: 'patch', remote: true, id: 'mainForm', class: 'form-group width-100' } do %>
+				<div class="row">
+					<div class="col-md-10">
+						<%= number_field_tag :digits, params[:digits], min: 1, step: 1, value: 100, id: 'numberField', class: 'form-control input-sm', autocomplete: 'off', required: true %>
+					</div>
 
-				<div class="col-md-2">
-					<label id="go" class="btn-outline-dark-animated btn-80" data-content="GO", onclick="wait()">
-						<%= submit_tag '', name: nil, style: 'display: none' %>
-					</label>
+					<div class="col-md-2">
+						<label id="go" class="btn-outline-dark-animated btn-80" data-content="GO", onclick="wait()">
+							<%= submit_tag '', name: nil, style: 'display: none' %>
+						</label>
+					</div>
 				</div>
+			<% end %>
+
+			<textarea class="form-control mb-4" name="puts" id="puts" rows="10" placeholder="Enter a value above to get the value of pi"></textarea>
+
+			<div class="centrify">
+				<button class="btn-outline-primary-animated btn-80" data-content="copy" id="copy" onclick="copy()"></button>
 			</div>
-		<% end %>
 
-		<textarea class="form-control mb-4" name="puts" id="puts" rows="10" placeholder="Enter a value above to get the value of pi"></textarea>
-
-		<div class="centrify">
-			<button class="btn-outline-primary-animated btn-80" data-content="copy" id="copy" onclick="copy()"></button>
-		</div>
-
-		<div id="notification">
+			<div id="notification">
+			</div>
 		</div>
 	</div>
 </div>
