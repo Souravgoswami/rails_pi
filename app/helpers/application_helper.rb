@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def seo_tags
+	def seo_tags(image)
 		<<~EOF.html_safe
 			<meta charset="utf-8">
 			<meta name="author" content="Sourav Goswami [souravgoswami@protonmail.com]">
@@ -7,7 +7,7 @@ module ApplicationHelper
 			<meta name="description" content="Calculate Pi on the Server">
 			<meta property="og:title" content="Pi Calculator">
 			<meta property="og:type" content="webapp">
-			<meta property="og:image" content="#{image_url('pi')}">
+			<meta property="og:image" content="#{image}">
 		EOF
 	end
 
