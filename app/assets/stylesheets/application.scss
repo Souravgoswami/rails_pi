@@ -1,0 +1,62 @@
+@import 'bootstrap/scss/bootstrap' ;
+
+@font-face {
+	font-family: 'Short Stack';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Short Stack'), local('ShortStack'), url(short_stack.woff2) format('woff2');
+}
+
+
+body {
+	font-family: 'Short Stack' ;
+	background: #222 image-url('pexels-fwstudio-172296') center center ;
+	background-size: cover ;
+	height: 100vh ;
+	display: flex ;
+	justify-content: center ;
+	align-items: center ;
+}
+
+.bg-image {
+	background-color: #D4EDDA88 ;
+	box-shadow: 4px 4px 4px #0006 !important ;
+	transition: all 0.25s ease ;
+
+	&:hover {
+		box-shadow: 0px 0px 12px #0009 !important ;
+	}
+}
+
+.centrify {
+	width: 100% ;
+	display: flex ;
+	justify-content: center ;
+	align-items: center ;
+}
+
+.btn-80 {
+	width: 80px ;
+}
+
+.width-100 {
+	width: 100% ;
+}
+
+#puts {
+	resize: none ;
+}
+
+.slow {
+	animation: x 0.25s ease ;
+	transform-origin: top center ;
+}
+
+@keyframes x {
+	0% { transform: scaleY(0) }
+	100% { transform: scaleY(1) }
+}
+
+#notification {
+	min-height: 50px ;
+}

@@ -1,0 +1,139 @@
+// Boostrap like buttons
+.btn-outline-light-animated, .btn-outline-dark-animated,
+.btn-outline-primary-animated, .btn-outline-secondary-animated,
+.btn-outline-danger-animated, .btn-outline-warning-animated,
+.btn-outline-info-animated, .btn-outline-success-animated,
+// Other buttons
+.btn-outline-pink-animated,
+.btn-outline-blue-animated,
+.btn-outline-green-animated,
+.btn-outline-orange-animated,
+.btn-outline-purple-animated,
+.btn-outline-emerald-animated {
+	content: attr(data-content) ;
+	background-color: transparent ;
+	margin: 4px ;
+	font-size: 16px ;
+	position: relative ;
+	padding: 6px ;
+	text-decoration: none ;
+	border-radius: 4px ;
+	display: inline-flex ;
+	align-items: center ;
+	overflow: hidden ;
+	justify-content: center ;
+	transition: all 0.5s ease ;
+	cursor: pointer ;
+
+	&::before {
+		content: attr(data-content) ;
+		position: absolute ;
+		top: 0 ;
+		left: 0 ;
+		height: 100% ;
+		width: 100% ;
+		display: flex ;
+		justify-content: center ;
+		align-items: center ;
+		opacity: 0 ;
+		transform: scale(3) ;
+		transition: all 0.25s ease ;
+	}
+
+	&:hover {
+		color: transparent ;
+		text-decoration: none ;
+
+		&::before {
+			opacity: 1 ;
+			transform: scale(1.025) ;
+		}
+	}
+
+	&:active {
+		&::before {
+			opacity: 1 ;
+			transform-origin: center ;
+			transform: translateY(-100%) scale(1.025) ;
+			transition: all 0.125s ease ;
+		}
+	}
+
+	&::after {
+		content: attr(data-content) ;
+		width: 100% ;
+		height: 100% ;
+		display: flex ;
+		justify-content: center ;
+		font-size: 16px ;
+	}
+}
+
+@mixin btn-outline-animated-colours($bg, $fg) {
+	border: 2px solid $bg ;
+
+	&::before {
+		color: $fg ;
+		background-color: $bg ;
+	}
+
+	&::after {
+		color: $bg ;
+	}
+}
+
+.btn-outline-light-animated {
+	@include btn-outline-animated-colours(#fff, #222) ;
+}
+
+.btn-outline-dark-animated {
+	@include btn-outline-animated-colours(#222, #fff) ;
+}
+
+.btn-outline-primary-animated {
+	@include btn-outline-animated-colours(#007BFF, #fff) ;
+}
+
+.btn-outline-secondary-animated {
+	@include btn-outline-animated-colours(#6C757D, #fff) ;
+}
+
+.btn-outline-danger-animated {
+	@include btn-outline-animated-colours(#DC3545, #fff) ;
+}
+
+.btn-outline-warning-animated {
+	@include btn-outline-animated-colours(#FFC107, #fff) ;
+}
+
+.btn-outline-info-animated {
+	@include btn-outline-animated-colours(#17A2B8, #fff) ;
+}
+
+.btn-outline-success-animated {
+	@include btn-outline-animated-colours(#28A745, #fff) ;
+}
+
+.btn-outline-pink-animated {
+	@include btn-outline-animated-colours(#ff50a6, #fff) ;
+}
+
+.btn-outline-blue-animated {
+	@include btn-outline-animated-colours(#007BFF, #fff) ;
+}
+
+.btn-outline-green-animated {
+	@include btn-outline-animated-colours(#00A32C, #fff) ;
+}
+
+.btn-outline-orange-animated {
+	@include btn-outline-animated-colours(#FFA726, #fff) ;
+}
+
+.btn-outline-purple-animated {
+	@include btn-outline-animated-colours(#912BFF, #fff) ;
+}
+
+.btn-outline-emerald-animated {
+	@include btn-outline-animated-colours(#00D2D2, #fff) ;
+}
