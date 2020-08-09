@@ -40,7 +40,7 @@ $(() => {
 		var copyText = 'copy'
 		var string = $('#puts').html()
 
-		if ( string.length < 1 || /[^\d\.]/.test(string) ) {
+		if ( string.length < 1 || !/[^\d\.]/.test(string) ) {
 			showNotification('Nothing to copy!')
 		}
 
@@ -60,6 +60,10 @@ $(() => {
 			}, 2000)
 		}
 	}
+
+	// $('#numberField').change(function() {
+	// 	this.value <= 0
+	// })
 })
 
 window.$ = $
