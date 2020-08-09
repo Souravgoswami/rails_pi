@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pi</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+	<head>
+		<title>Pi</title>
+		<%= seo_tags %>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+		<%= favicon_link_tag 'pi' %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'btn_outline_animated', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
-    <%= yield %>
-  </body>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag 'btn_outline_animated', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+
+	<body>
+		<div class="center">
+			<div class="container-fluid">
+				<div class="jumbotron jumbotron-bg">
+					<%= yield %>
+
+					<div class="centrify">
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<%= link_to 'https://github.com/Souravgoswami/rails_pi' do %>
+									<%= image_tag 'github', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
+								<% end %>
+							</div>
+
+							<div class="col-md-6">
+								<% unless current_page?(api_example_path) %>
+									<%= link_to api_example_path do %>
+										<%= image_tag 'api', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'API Guide' %>
+									<% end %>
+								<% else %>
+									<%= link_to root_path do %>
+										<%= image_tag 'home', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

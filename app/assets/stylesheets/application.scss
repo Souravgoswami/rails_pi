@@ -83,6 +83,39 @@ body::after {
 	overflow: auto ;
 }
 
+.icon16 {
+	width: 36px ;
+}
+
+.icon {
+	cursor: pointer ;
+	transition: all 0.25s ease ;
+
+	&:hover {
+		transform: scale(1.5) ;
+		rotate: 360deg ;
+	}
+}
+
+pre.code .code {
+	white-space: pre-wrap ;
+	background-color: #55f5 ;
+}
+
+pre.code::before {
+	counter-reset: listing
+}
+
+pre.code code {
+	counter-increment: listing
+}
+
+pre.code code::before {
+	content: counter(listing) '. ' ;
+	display: inline-block ;
+	margin-right: 8px ;
+}
+
 @media(max-width: 768px) {
 	#go {
 		text-align: center ;
