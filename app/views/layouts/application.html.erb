@@ -36,9 +36,15 @@
 							<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
 						<% end %>
 
-						<% unless Rails.env.production? %>
-							<%= link_to system_stats_path do %>
-								<%= image_tag 'info.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'System Stats' %>
+						<% if !Rails.env.production? || current_page?(system_stats_path) %>
+							<% unless current_page?(system_stats_path) %>
+								<%= link_to system_stats_path do %>
+									<%= image_tag 'info.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'System Stats' %>
+								<% end %>
+							<% else %>
+								<%= link_to root_path do %>
+									<%= image_tag 'home.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
+								<% end %>
 							<% end %>
 						<% end %>
 					</div>
