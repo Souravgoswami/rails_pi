@@ -15,16 +15,17 @@ body {
 	margin: 0 ;
 }
 
-body::after {
+body::before {
 	content: '' ;
-	background: #D4EDDA image-url('pexels-fwstudio-172296') center center no-repeat ;
-	background-size: cover ;
-	height: 100vh ;
-	width: 100vw ;
+	z-index: -1000 ;
 	position: fixed ;
 	top: 0 ;
 	left: 0 ;
-	z-index: -1000
+	height: 100% ;
+	width: 100% ;
+	background: #D4EDDA no-repeat image-url('pexels-fwstudio-172296') center ;
+	background-size: cover ;
+	object-fit: fill
 }
 
 .center {
