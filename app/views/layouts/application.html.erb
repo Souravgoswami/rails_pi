@@ -21,22 +21,20 @@
 					<%= yield %>
 					<div id="notification"></div>
 
-					<div class="centrify">
-						<div class="row mb-4">
-							<%= link_to 'https://github.com/Souravgoswami/rails_pi' do %>
-								<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
+					<div class="centrify mb-4 no-select">
+						<% unless current_page?(api_example_path) %>
+							<%= link_to api_example_path do %>
+								<%= image_tag 'api.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'API Guide' %>
 							<% end %>
+						<% else %>
+							<%= link_to root_path do %>
+								<%= image_tag 'home.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
+							<% end %>
+						<% end %>
 
-							<% unless current_page?(api_example_path) %>
-								<%= link_to api_example_path do %>
-									<%= image_tag 'api.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'API Guide' %>
-								<% end %>
-							<% else %>
-								<%= link_to root_path do %>
-									<%= image_tag 'home.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
-								<% end %>
-							<% end %>
-						</div>
+						<%= link_to 'https://github.com/Souravgoswami/rails_pi' do %>
+							<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
+						<% end %>
 					</div>
 				</div>
 			</div>

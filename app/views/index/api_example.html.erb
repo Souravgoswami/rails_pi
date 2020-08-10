@@ -4,16 +4,14 @@
 	</div>
 
 	<h1>API Example</h1>
+	<h1>[Under Construction]</h1>
 </div>
 
 <h5>To get results in JSON format, you can visit:</h5>
-<%= simple_format <<~EOF
-		#{link_to render_results_url(5), render_results_path(5)}
-		Or
-		#{link_to render_results2_url(5), render_results2_url(5) }
 
-	EOF
-%>
+<%= link_to *[render_results_url(5)] * 2, class: 'link', 'data-content': render_results_url(5) %>
+<br>Or<br>
+<%= link_to *[render_results2_url(5)] * 2, class: 'link', 'data-content': render_results2_url(5) %>
 
 <h5>For example, in a sample Ruby program:</h5>
 
@@ -23,5 +21,10 @@
 
 <br>
 
-<p>The value specifies the value of Pi.</p>
-<p>The time specifies the time the server spent calculating Pi!</p>
+<p>
+	The digit specifies the number of digit the returned Pi has after decimal.
+	The value specifies the value of Pi upto the given precision.
+	The time specifies the time the server spent calculating Pi!
+</p>
+
+<%= system_details %>

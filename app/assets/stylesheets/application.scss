@@ -101,6 +101,10 @@ body::before {
 		transform: scale(1.5) ;
 		rotate: 360deg ;
 	}
+
+	&:active {
+		opacity: 0.5 ;
+	}
 }
 
 .icon-hover {
@@ -187,6 +191,60 @@ pre.code code::before {
 
 .api-text-anim {
 		animation: apiAnim 8s ease infinite ;
+}
+
+.link {
+	color: transparent ;
+	user-select: none ;
+	text-decoration: none ;
+	position: relative ;
+	display: inline-block ;
+	overflow: hidden ;
+
+	&::before, &:after {
+		content: attr(data-content) ;
+		position: absolute ;
+		color: #f55 ;
+		top: 0 ;
+		left: 0 ;
+		transform: translateX(-100%) ;
+		transition: all 0.25s ease ;
+		display: flex ;
+		align-items: center ;
+		height: 100% ;
+		width: 100% ;
+	}
+
+	&::after {
+		content: attr(data-content) ;
+		color: #55f ;
+		text-decoration: none ;
+		transition: all 0.25s ease ;
+		position: absolute ;
+		transform: translateX(0) ;
+	}
+
+	&:hover {
+		color: transparent ;
+
+		&::after {
+			color: #0a0 ;
+			text-decoration: none ;
+			transform: translateX(100%) ;
+		}
+
+		&::before {
+			transform: translateX(0) ;
+		}
+	}
+
+	&:active::before {
+		color: #da0 ;
+	}
+}
+
+.no-select {
+	user-select: none ;
 }
 
 @keyframes apiAnim {
