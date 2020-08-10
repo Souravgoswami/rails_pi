@@ -42,13 +42,14 @@ $(() => {
 	window.copy = function() {
 		var copyText = 'copy'
 		var string = $('#puts').val().toString()
+		console.log(string)
 
 		if ( string.length < 1 || /[^\d\.]/.test(string) ) {
 			showNotification('Nothing to copy!')
 		} else {
 			var copyHelper = document.createElement('input')
 			document.body.appendChild(copyHelper)
-			copyHelper.value = $('#puts').html()
+			copyHelper.value = string
 			copyHelper.select()
 			document.execCommand('copy')
 			document.body.removeChild(copyHelper)
