@@ -135,7 +135,9 @@ pre.code code::before {
 .return-value {
 	user-select: none ;
 	background: linear-gradient(45deg, #f55, #55f) ;
+	-webkit-background: linear-gradient(45deg, #f55, #55f) ;
 	background-clip: text ;
+	-webkit-background-clip: text ;
 	color: transparent ;
 }
 
