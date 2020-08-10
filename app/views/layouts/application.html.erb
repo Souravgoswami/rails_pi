@@ -14,30 +14,26 @@
 
 	<body>
 		<div class="center">
-			<div class="container-fluid">
+			<div class="container p-3">
 				<div class="jumbotron jumbotron-bg">
 					<%= yield %>
 					<div id="notification"></div>
 
 					<div class="centrify">
 						<div class="row mb-4">
-							<%# <div class="col-md-6"> %>
-								<%= link_to 'https://github.com/Souravgoswami/rails_pi' do %>
-									<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
-								<% end %>
-							<%# </div> %>
+							<%= link_to 'https://github.com/Souravgoswami/rails_pi' do %>
+								<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
+							<% end %>
 
-							<%# <div class="col-md-6"> %>
-								<% unless current_page?(api_example_path) %>
-									<%= link_to api_example_path do %>
-										<%= image_tag 'api.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'API Guide' %>
-									<% end %>
-								<% else %>
-									<%= link_to root_path do %>
-										<%= image_tag 'home.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
-									<% end %>
+							<% unless current_page?(api_example_path) %>
+								<%= link_to api_example_path do %>
+									<%= image_tag 'api.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'API Guide' %>
 								<% end %>
-							<%# </div> %>
+							<% else %>
+								<%= link_to root_path do %>
+									<%= image_tag 'home.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
+								<% end %>
+							<% end %>
 						</div>
 					</div>
 				</div>
