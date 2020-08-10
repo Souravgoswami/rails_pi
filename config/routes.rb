@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'system_stats', to: 'index#system_stats'
   get 'api_example', to: 'index#api_example'
   get 'index/api_example', to: 'index#api_example'
   get 'index/:digits', to: 'index#render_results', as: 'render_results2'

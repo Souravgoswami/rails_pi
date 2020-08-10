@@ -190,7 +190,12 @@ pre.code code::before {
 }
 
 .api-text-anim {
-		animation: apiAnim 8s ease infinite ;
+	animation: apiAnim 8s ease infinite ;
+}
+
+.info-i, .info-i2 {
+	animation: infoAnim 5s ease infinite ;
+	transform-origin: 50% 50% ;
 }
 
 .link {
@@ -281,6 +286,38 @@ pre.code code::before {
 	}
 
 	100% {
+		transform: translate(-100%) ;
+	}
+}
+
+@keyframes infoAnim {
+	0% {
+		transform: translateY(100%) ;
+	}
+
+	15% {
+		transform: translateY(0) ;
+		filter: none ;
+		opacity: 1 ;
+	}
+
+	20% {
+		filter: blur(8px) ;
+	}
+
+	25% {
+		filter: none ;
+	}
+
+	50% {
+		transform: rotate(360deg) ;
+	}
+
+	60% {
+		transform: rotate(0deg) ;
+	}
+
+	90%, 100% {
 		transform: translate(-100%) ;
 	}
 }
