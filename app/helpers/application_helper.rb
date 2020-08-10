@@ -20,6 +20,6 @@ module ApplicationHelper
 		EOF
 
 		_binding = binding
-		code.each_line.map { |x| %[\n<code>#{x}<span class="return-value"> # => #{_binding.eval(x)}</span></code>] }.join.html_safe
+		code.each_line.map { |x| %[\n<code class="code">#{x}<span class="return-value"> # => #{_binding.eval(x)}</span></code>] }.join.html_safe
 	end
 end
