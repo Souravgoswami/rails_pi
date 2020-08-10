@@ -31,7 +31,7 @@ module IndexHelper
 	def memory
 		if File.readable?('/proc/meminfo')
 			meminfo = IO.readlines('/proc/meminfo')
-			meminfo.find { |x| x[/^MemTotal/] }.split[1].to_i.fdiv(1024).round(2)
+			meminfo.find { |x| x[/^MemTotal/] }.split[1].to_i.fdiv(1024 ** 2).round(2)
 		else
 			''
 		end

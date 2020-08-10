@@ -13,7 +13,7 @@
 <%= %Q[CPU Usage: #{cpu_usage.then { |x| "Total: #{x[0]}<br>[#{x.drop(1).join(', ')}]" }}].html_safe %>
 <hr>
 
-<%= "Total Memory: #{memory}" %>
+<%= "Total Memory: #{memory} GiB" %>
 <hr>
 <%= "Uptime: #{uptime.map { |x| x.then { |y| y < 10 ? "0#{y}" : "#{y}" }}.join(?:)}" %>
 <hr>
