@@ -78,7 +78,8 @@ body::after {
 }
 
 #notification {
-	min-height: 55px ;
+	margin: 12px 0px ;
+	min-height: 70px ;
 	max-height: 165px ;
 	overflow: auto ;
 }
@@ -89,12 +90,28 @@ body::after {
 
 .icon {
 	cursor: pointer ;
+	display: inline ;
+	margin: 8px ;
 	transition: all 0.25s ease ;
 
 	&:hover {
 		transform: scale(1.5) ;
 		rotate: 360deg ;
 	}
+}
+
+.icon-hover {
+	cursor: pointer ;
+	transition: all 0.25s ease ;
+
+	&:hover {
+		opacity: 0.75 ;
+	}
+}
+
+pre.code {
+	margin: 0 ;
+	padding: 4px ;
 }
 
 pre.code .code {
@@ -113,7 +130,135 @@ pre.code code {
 pre.code code::before {
 	content: counter(listing) '. ' ;
 	display: inline-block ;
-	margin-right: 8px ;
+}
+
+.return-value {
+	user-select: none ;
+	background: linear-gradient(45deg, #f55, #55f) ;
+	background-clip: text ;
+	color: transparent ;
+}
+
+.logo {
+	display: inline ;
+}
+
+.shadowed {
+	box-shadow: 0px 0px 8px #0006 ;
+	border-radius: 4px ;
+	padding: 12px ;
+}
+
+.pi-anim {
+	width: 70px ;
+	stroke-dasharray: 50px ;
+	stroke-dashoffset: 50px ;
+	stroke: #fff ;
+	stroke-width: 2px ;
+	animation: dasharrayAnim 5s linear infinite ;
+}
+
+.slide-up-down {
+	animation: slideAnim 1s ease alternate infinite ;
+}
+
+.spark-1, .spark-2 {
+	stroke: none ;
+	animation: blink 0.2s ease alternate infinite ;
+}
+
+.spark-2 {
+	animation-delay: 0.1s ;
+}
+
+.svg-rotate {
+	animation: rotateAnim 1s linear infinite ;
+	transform-origin: 70% 69% ;
+}
+
+.api-text-anim {
+		animation: apiAnim 8s ease infinite ;
+}
+
+@keyframes apiAnim {
+	0% {
+		transform: translateY(100%) ;
+	}
+
+	10%, 45%, 60%, 90% {
+		transform: translate(0%) ;
+		fill: #f55 ;
+		filter: none ;
+	}
+
+	50% {
+		filter: blur(4px) ;
+		fill: #55f ;
+	}
+
+	55% {
+		filter: none ;
+	}
+
+	65% {
+		transform: rotate(20deg) ;
+		fill: #f5f ;
+	}
+
+	70% {
+		transform: rotate(0deg) ;
+	}
+
+	90% {
+		transform: translateX(-100%) ;
+	}
+
+	100% {
+		transform: translate(-100%) ;
+	}
+}
+
+@keyframes rotateAnim {
+	0% {
+		transform: rotate(0deg) ;
+	}
+
+	100% {
+		transform: rotate(360deg) ;
+	}
+}
+
+@keyframes slideAnim {
+	0% {
+		transform: translate(-3%, 30%) ;
+	}
+
+	100% {
+		transform: translate(0%, -20%) ;
+
+	}
+}
+
+@keyframes dasharrayAnim {
+	0% {
+		stroke-dashoffset: 500px ;
+
+	}
+
+	100% {
+		stroke-dashoffset: 0px ;
+
+	}
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0 ;
+	}
+
+	100% {
+		opacity: 1 ;
+	}
 }
 
 @media(max-width: 768px) {
@@ -122,5 +267,10 @@ pre.code code::before {
 		display: block ;
 		margin: 8px auto ;
 		width: 30% ;
+	}
+
+	.logo {
+		display: flex ;
+		text-align: center ;
 	}
 }

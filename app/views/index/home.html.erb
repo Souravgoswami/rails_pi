@@ -1,4 +1,10 @@
-<h2 class="centrify mb-4">Pi Calculator</h2>
+<div class="centrify mb-4">
+	<div class="logo">
+		<svg class="pi-anim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><g paint-order="markers fill stroke"><path fill="#55f" d="M103 20.8h18.5V6.5H45.2c-25.8 0-35 10.5-38.7 21l4.8 4c7.8-5.9 8.5-9.2 28.2-10.3l-5.4 55.5c-1.6 14.6-13.6 21.8-17.2 28.7s6.4 16.1 17.2 16.1c6.3 0 11-5.8 12.3-17l8.2-83.7H88L80.6 97c-1.7 14.4 2.8 24.5 15.4 24.5 10.4 0 20.5-6.4 21.4-23.6H111s-2.2 9.2-8.6 10.1c-3.9.5-7.7-2.4-6.6-13.9z"/><path class="slide-up-down" fill="#fff" d="M93.4 59.3a1.7 1.7 0 01-.2 0 1.8 1.8 0 01-1.5-1.9l.9-9.5a1.8 1.8 0 013.5.4l-1 9.5a1.8 1.8 0 01-1.7 1.5z"/><path fill="#fff" d="M32.8 13.5c-.5 2-2 3.5-4 4 2 .4 3.5 2 4 3.9.4-2 1.9-3.5 3.8-4-1.9-.5-3.4-2-3.8-4z" class="spark-2"/><path class="spark-1" fill="#fff" d="M25.6 7.2zm0 2.4c-.4 2-2 3.4-3.8 4 1.9.4 3.4 2 3.8 3.8.4-2 2-3.4 3.9-4-2-.4-3.4-2-3.9-3.8zm0 10.2z" class="spark4"/></g></svg>
+	</div>
+
+	<h1>Pi Calculator</h1>
+</div>
 
 <%= form_tag calculate_path, { method: 'patch', remote: true, id: 'mainForm', class: 'form-group width-100' } do %>
 	<div class="row">
@@ -18,7 +24,4 @@
 
 <div class="centrify">
 	<button class="btn-outline-primary-animated btn-80" data-content="copy" id="copy" onclick="copy()"></button>
-</div>
-
-<div id="notification">
 </div>

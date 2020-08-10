@@ -12,7 +12,7 @@ module ApplicationHelper
 	end
 
 	def example_code(route)
-		code = <<~EOF
+		code = <<~EOF.lstrip
 			require 'net/https'
 			require 'json'
 			json_data = Net::HTTP.get(URI("#{route}"))
@@ -20,6 +20,6 @@ module ApplicationHelper
 		EOF
 
 		_binding = binding
-		code.each_line.map { |x| "<code>#{x}=> #{_binding.eval(x)}\n</code>" }.join.html_safe
+		code.each_line.map { |x| %[\n<code>#{x}<span class="return-value"> # => #{_binding.eval(x)}<span></code>] }.join.html_safe
 	end
 end

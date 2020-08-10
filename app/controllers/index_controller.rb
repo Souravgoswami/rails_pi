@@ -34,7 +34,7 @@ class IndexController < ApplicationController
 		@str = find_pi(@digits)
 		@time = Time.now - start_time
 
-		msg = {value: @str, time: @time}
+		msg = {digits: @digits, value: @str, time: @time}
 		render :json => msg
 	end
 

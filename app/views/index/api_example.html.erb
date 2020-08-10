@@ -1,4 +1,10 @@
-<h2 class="centrify mb-4">API Example</h2>
+<div class="centrify mb-4">
+	<div class="logo">
+		<svg class="pi-anim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468.3 468.3"><path fill="#3a556a" d="M385 69H0V18C0 11 6 5 12 5h360c7 0 13 6 13 13v51z" data-original="#3A556A"/><path fill="#e1e6e9" d="M372 377H12c-6 0-12-5-12-12V69h385v296c0 7-6 12-13 12z" data-original="#E1E6E9"/><circle cx="41.7" cy="37.2" r="16" fill="#fcd462" data-original="#FCD462"/><circle cx="93" cy="37.2" r="16" fill="#27a2db" data-original="#27A2DB"/><circle cx="144.4" cy="37.2" r="16" fill="#44c4a1" data-original="#44C4A1"/><path class="svg-rotate" fill="#27a2db" d="M440 347l28-7v-36l-28-7c-3-13-8-26-16-37l16-25-26-25-25 15c-11-7-24-13-37-16l-7-28h-36l-7 28c-13 3-26 9-37 16l-25-15-25 25 15 25c-7 11-13 24-16 37l-28 7v36l28 7c3 13 9 26 16 37l-15 25 25 25 25-15c11 7 24 13 37 16l7 28h36l7-28c13-3 26-9 37-16l25 15 26-25-16-25c8-11 13-24 16-37z" data-original="#27A2DB"/><circle cx="327.1" cy="322" r="89.8" fill="#e1e6e9" data-original="#E1E6E9"/><circle cx="327.1" cy="322" r="51.3" fill="#1c75a1" class="active-path" data-old_color="#1C75A1" data-original="#1C75A1"/><g fill="#3a556a"><path class="api-text-anim" d="M69 173l-6 14H51l29-65h12l28 65h-11l-7-14H69zm29-11l-12-27-12 27h24zM174 128c4 3 7 9 7 17s-3 14-7 18c-5 3-12 5-22 5h-11v19h-11v-65h22c10 0 17 2 22 6zm-8 27c2-3 3-6 3-11 0-4-1-7-4-9s-7-3-13-3h-11v26h12c7 0 11-1 13-3zM194 122h11v65h-11v-65z" data-original="#3A556A"/></g><path fill="#e1e6e9" d="M347 50H200c-7 0-13-6-13-13s6-12 13-12h147c7 0 13 5 13 12s-6 13-13 13z" data-original="#E1E6E9"/></svg>
+	</div>
+
+	<h1>API Example</h1>
+</div>
 
 <h5>To get results in JSON format, you can visit:</h5>
 <%= simple_format <<~EOF
@@ -9,10 +15,13 @@
 	EOF
 %>
 
-<h5><p>For example, in a sample ruby program:</p></h5>
-<pre class="code">
-<%= example_code(render_results_url(rand(5..10))) %>
-</pre>
+<h5>For example, in a sample Ruby program:</h5>
 
-The value specifies the value of Pi.
-The time specifies the time the server spent calculating Pi!
+<div class="row shadowed">
+	<pre class="code"><%= example_code(render_results_url(rand(5..10))) %></pre>
+</div>
+
+<br>
+
+<p>The value specifies the value of Pi.</p>
+<p>The time specifies the time the server spent calculating Pi!</p>

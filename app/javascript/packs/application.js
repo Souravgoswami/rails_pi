@@ -47,7 +47,6 @@ $(() => {
 			showNotification('Nothing to copy!')
 		} else {
 			var copyHelper = document.createElement('input')
-			copyHelper.className = 'copy-helper'
 			document.body.appendChild(copyHelper)
 			copyHelper.value = $('#puts').html()
 			copyHelper.select()

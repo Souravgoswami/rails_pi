@@ -17,16 +17,17 @@
 			<div class="container-fluid">
 				<div class="jumbotron jumbotron-bg">
 					<%= yield %>
+					<div id="notification"></div>
 
 					<div class="centrify">
 						<div class="row mb-4">
-							<div class="col-md-6">
+							<%# <div class="col-md-6"> %>
 								<%= link_to 'https://github.com/Souravgoswami/rails_pi' do %>
 									<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
 								<% end %>
-							</div>
+							<%# </div> %>
 
-							<div class="col-md-6">
+							<%# <div class="col-md-6"> %>
 								<% unless current_page?(api_example_path) %>
 									<%= link_to api_example_path do %>
 										<%= image_tag 'api.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'API Guide' %>
@@ -36,7 +37,7 @@
 										<%= image_tag 'home.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Home' %>
 									<% end %>
 								<% end %>
-							</div>
+							<%# </div> %>
 						</div>
 					</div>
 				</div>
