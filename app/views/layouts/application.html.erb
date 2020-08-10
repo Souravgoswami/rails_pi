@@ -36,8 +36,10 @@
 							<%= image_tag 'github.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Github' %>
 						<% end %>
 
-						<%= link_to system_stats_path do %>
-							<%= image_tag 'info.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'System Stats' %>
+						<% unless Rails.env.production? %>
+							<%= link_to system_stats_path do %>
+								<%= image_tag 'info.svg', class: 'icon icon16', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'System Stats' %>
+							<% end %>
 						<% end %>
 					</div>
 				</div>

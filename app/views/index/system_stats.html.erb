@@ -6,14 +6,24 @@
 	<h1>System Stats</h1>
 </div>
 
-<%= "Processor: #{processor[0]}" %>
+<% if Rails.env.production? %>
+	<div class="centrify"><h6>Warning! On a Production Server this could mean nothing</h6></div>
+	<hr>
+<% end %>
+
+<h4>Processor</h4>
+<%= processor[0] %>
 <%= "[ #{processor[1]} ]" %>
 <hr>
 
-<%= %Q[CPU Usage: #{cpu_usage.then { |x| "Total: #{x[0]}<br>[#{x.drop(1).join(', ')}]" }}].html_safe %>
+<h4>CPU Usages</h4>
+<%= %Q[#{cpu_usage.then { |x| "Total: #{x[0]}<br>[#{x.drop(1).join(', ')}]" }}].html_safe %>
 <hr>
 
-<%= "Total Memory: #{memory} GiB" %>
+<h4>Memory</h4>
+<%= "Total: #{memory} GiB" %>
 <hr>
+
+<h4>Uptime</h4>
 <%= "Uptime: #{uptime.map { |x| x.then { |y| y < 10 ? "0#{y}" : "#{y}" }}.join(?:)}" %>
 <hr>
