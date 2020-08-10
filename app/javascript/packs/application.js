@@ -42,7 +42,6 @@ $(() => {
 	window.copy = function() {
 		var copyText = 'copy'
 		var string = $('#puts').val().toString()
-		console.log(string)
 
 		if ( string.length < 1 || /[^\d\.]/.test(string) ) {
 			showNotification('Nothing to copy!')
