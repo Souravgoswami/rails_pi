@@ -17,13 +17,19 @@
 <hr>
 
 <h4>CPU Usages</h4>
-<%= %Q[#{cpu_usage.then { |x| "Total: #{x[0]}<br>[#{x.drop(1).join(', ')}]" }}].html_safe %>
+<div id="cpuUsages">
+	<%= render 'stats/cpu_usage' %>
+</div>
 <hr>
 
 <h4>Memory</h4>
-<%= "Total: #{memory} GiB" %>
+<div id="memory"><%= render 'stats/memory' %></div>
 <hr>
 
 <h4>Uptime</h4>
-<%= "Uptime: #{uptime.map { |x| x.then { |y| y < 10 ? "0#{y}" : "#{y}" }}.join(?:)}" %>
+<div id="uptime"><%= render 'stats/uptime' %></div>
+<hr>
+
+<h4>Date & Time</h4>
+<div id="datetime"><%= render 'stats/datetime' %></div>
 <hr>

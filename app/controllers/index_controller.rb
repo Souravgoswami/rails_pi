@@ -1,5 +1,6 @@
 class IndexController < ApplicationController
 	before_action :set_digits, only: %i[calculate render_results]
+
 	def home
 	end
 
@@ -32,7 +33,7 @@ class IndexController < ApplicationController
 		@digits = params[:digits].to_i.then { |x| x < 1 ? 100 : x }
 	end
 
-		def find_pi(n)
+	def find_pi(n)
 		q = t = k = 1
 		m = x = 3
 		n, r = n + 1, 0

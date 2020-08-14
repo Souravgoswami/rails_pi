@@ -5,6 +5,8 @@ require("channels")
 require('jquery')
 require('bootstrap')
 
+import Rails from '@rails/ujs'
+
 document.addEventListener('turbolinks:load', () => {
 	$('[data-toggle="tooltip"]').tooltip({
 		trigger: 'hover'
@@ -60,6 +62,15 @@ $(() => {
 			}, 2000)
 		}
 	}
+
+	setInterval(function() {
+		Rails.ajax({
+			url: '/system_stats',
+			type: 'get',
+			dataType: 'script',
+		})
+	}, 500)
 })
 
+window.JQuery = $
 window.$ = $

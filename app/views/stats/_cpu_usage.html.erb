@@ -1,0 +1,1 @@
+<%= %Q[#{cpu_usage.then { |x| "Total: #{x[0]}<br>[#{x.drop(1).join(', ')}]" }}].html_safe %>
