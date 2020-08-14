@@ -7,12 +7,29 @@ require('bootstrap')
 
 import Rails from '@rails/ujs'
 
+var interval = null
 document.addEventListener('turbolinks:load', () => {
 	$('[data-toggle="tooltip"]').tooltip({
 		trigger: 'hover'
 	}).click(function() { $(this).tooltip('hide') })
 
 	$('[data-toggle="popover"]').popover()
+
+	if (document.getElementById('systemStatsPage') && !interval) {
+		clearInterval(interval)
+		interval = setInterval(function() {
+			Rails.ajax({
+				url: '/system_stats',
+				type: 'get',
+				dataType: 'script',
+			})
+		}, 500)
+	}
+
+	else if (!document.getElementById('systemStats') && interval) {
+		clearInterval(interval)
+		interval = null
+	}
 })
 
 $(() => {
@@ -49,8 +66,8 @@ $(() => {
 			showNotification('Nothing to copy!')
 		} else {
 			var copyHelper = document.createElement('input')
-			document.body.appendChild(copyHelper)
 			copyHelper.value = string
+			document.body.appendChild(copyHelper)
 			copyHelper.select()
 			document.execCommand('copy')
 			document.body.removeChild(copyHelper)
@@ -62,14 +79,6 @@ $(() => {
 			}, 2000)
 		}
 	}
-
-	setInterval(function() {
-		Rails.ajax({
-			url: '/system_stats',
-			type: 'get',
-			dataType: 'script',
-		})
-	}, 500)
 })
 
 window.JQuery = $
