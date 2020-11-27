@@ -14,24 +14,28 @@
 <% end %>
 
 <h4>Processor</h4>
-<%= processor[0] %>
-<%= "[ #{processor[1]} ]" %>
+	<%= LinuxStat::CPU.model %>
+	[ <%= LinuxStat::CPU.count %> ]
 <hr>
 
 <h4>CPU Usages</h4>
-<div id="cpuUsages">
-	<%= render 'stats/cpu_usage' %>
-</div>
+	<div id="cpuUsages">
+		<%= render 'stats/cpu_usage' %>
+	</div>
 <hr>
 
 <h4>Memory</h4>
-<div id="memory"><%= render 'stats/memory' %></div>
+	<div id="memory"><%= render 'stats/memory' %></div>
+<hr>
+
+<h4>Swap</h4>
+	<div id="memory"><%= render 'stats/swap' %></div>
 <hr>
 
 <h4>Uptime</h4>
-<div id="uptime"><%= render 'stats/uptime' %></div>
+	<div id="uptime"><%= render 'stats/uptime' %></div>
 <hr>
 
 <h4>Date & Time</h4>
-<div id="datetime"><%= render 'stats/datetime' %></div>
+	<div id="datetime"><%= render 'stats/datetime' %></div>
 <hr>
