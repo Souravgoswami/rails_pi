@@ -2,7 +2,7 @@ Command Line: <strong><%= LinuxStat::ProcessInfo.cmdline %></strong>
 <br>
 Command Name: <strong><%= LinuxStat::ProcessInfo.command_name %></strong>
 <br>
-CPU Usage: <strong><%= LinuxStat::ProcessInfo.cpu_usage %>%</strong>
+CPU Usage: <strong><%= LinuxStat::ProcessInfo.cpu_usage.round(2) %>%</strong>
 <br>
 Last Executed CPU: <strong><%= LinuxStat::ProcessInfo.last_executed_cpu %></strong>
 <br>
