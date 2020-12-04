@@ -8,7 +8,7 @@ Last Executed CPU: <strong><%= LinuxStat::ProcessInfo.last_executed_cpu %></stro
 <br>
 Threads: <strong><%= LinuxStat::ProcessInfo.threads %></strong>
 <br>
-Memory: <strong><%= LinuxStat::ProcessInfo.memory.then { |x|
+Memory: <%= LinuxStat::ProcessInfo.memory.then { |x|
 	unless x
 		'Info Not Available'.freeze
 	else
