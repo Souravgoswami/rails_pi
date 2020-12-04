@@ -11,6 +11,6 @@ Threads: <strong><%= LinuxStat::ProcessInfo.threads %></strong>
 Memory: <strong><%= LinuxStat::ProcessInfo.memory.fdiv(1000) %> MiB</strong>
 <br>
 IO: <%= LinuxStat::ProcessInfo.total_io.then { |x|
-	"Read: <strong>#{x[:read_bytes].fdiv(1000 ** 2).round(2)} MiB</strong><br>"
-	"Write: <strong>#{x[:write_bytes].fdiv(1000 ** 2).round(2)} MiB</strong>"
+	"Read: <strong>#{x[:read_bytes].to_i.fdiv(1000 ** 2).round(2)} MiB</strong><br>"
+	"Write: <strong>#{x[:write_bytes].to_i.fdiv(1000 ** 2).round(2)} MiB</strong>"
 }.html_safe %>

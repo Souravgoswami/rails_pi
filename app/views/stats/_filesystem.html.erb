@@ -1,5 +1,5 @@
-Total: <strong><%= LinuxStat::Filesystem.total.fdiv(1000 ** 3).round(2) %> GiB</strong>
+Total: <strong><%= LinuxStat::Filesystem.total.to_i.fdiv(1000 ** 3).round(2) %> GiB</strong>
 <br>
-Used: <strong><%= LinuxStat::Filesystem.used.fdiv(1000 ** 3).round(2) %> GiB</strong>
+Used: <strong><%= LinuxStat::Filesystem.used.to_i.fdiv(1000 ** 3).round(2) %> GiB</strong>
 <br>
-Free: <strong><%= LinuxStat::Filesystem.free.fdiv(1000 ** 3).round(2) %> GiB</strong>
+Free: <strong><%= LinuxStat::Filesystem.free.to_i.fdiv(1000 ** 3).round(2) %> GiB</strong>
