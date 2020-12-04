@@ -8,9 +8,19 @@ Last Executed CPU: <strong><%= LinuxStat::ProcessInfo.last_executed_cpu %></stro
 <br>
 Threads: <strong><%= LinuxStat::ProcessInfo.threads %></strong>
 <br>
-Memory: <strong><%= LinuxStat::ProcessInfo.memory.to_i.fdiv(1000) %> MiB</strong>
+Memory: <strong><%= LinuxStat::ProcessInfo.memory.then { |x|
+	unless x
+		'Info Not Available'.freeze
+	else
+		"<strong>#{x.fdiv(1000)} MiB</strong>".html_safe
+	end
+}%>
 <br>
 IO: <%= LinuxStat::ProcessInfo.total_io.then { |x|
-	"Read: <strong>#{x[:read_bytes].to_i.fdiv(1000 ** 2).round(2)} MiB</strong><br>"
-	"Write: <strong>#{x[:write_bytes].to_i.fdiv(1000 ** 2).round(2)} MiB</strong>"
-}.html_safe %>
+	if x.empty?
+		'Info Not Available'.freeze
+	else
+		"Read: <strong>#{x[:read_bytes].fdiv(1000 ** 2).round(2)} MiB</strong> | "\
+		"Write: <strong>#{x[:write_bytes].fdiv(1000 ** 2).round(2)} MiB</strong>".html_safe
+	end
+} %>
