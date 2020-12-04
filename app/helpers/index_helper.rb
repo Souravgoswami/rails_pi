@@ -12,7 +12,10 @@ module IndexHelper
 	end
 
 	def cpu_usage
-		"Total: #{LinuxStat::CPU.total_usage}%<br>Core Usage: | #{LinuxStat::CPU.usages.values.join(' | ')} |".html_safe
+		"Total: <strong>#{LinuxStat::CPU.total_usage}%</strong>"\
+		"<br>Core Usage: <strong>"\
+		"| #{LinuxStat::CPU.usages.values.join(' | ')} |"\
+		"</strong>".html_safe
 	end
 
 	def uptime
@@ -21,7 +24,7 @@ module IndexHelper
 			x < 10 ? ?0.freeze + x.to_s : x.to_s
 		}
 
-		"Uptime: #{u.join(?:)}"
+		"Uptime: <strong>#{u.join(?:)}</strong>".html_safe
 	end
 
 	def memory_stat
