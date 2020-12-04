@@ -1,0 +1,7 @@
+<%= LinuxStat::OS.distribution %> <%= LinuxStat::OS.machine %> ( <%= LinuxStat::OS.bits %> bits )
+<br>
+Root: <strong><%= LinuxStat::Mounts.root %></strong>
+<br>
+NodeName: <strong><%= LinuxStat::Uname.nodename %></strong>
+<br>
+IP: <strong><%= LinuxStat::Net.ipv4_private %></strong>
