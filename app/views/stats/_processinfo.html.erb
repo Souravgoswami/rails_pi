@@ -2,6 +2,8 @@ Command Line: <strong><%= LinuxStat::ProcessInfo.cmdline %></strong>
 <br>
 Command Name: <strong><%= LinuxStat::ProcessInfo.command_name %></strong>
 <br>
+Owner: <strong><%= LinuxStat::ProcessInfo.owner %></strong>
+<br>
 CPU Usage: <strong><%= LinuxStat::ProcessInfo.cpu_usage.round(2) %>%</strong>
 <br>
 Last Executed CPU: <strong><%= LinuxStat::ProcessInfo.last_executed_cpu %></strong>
@@ -12,7 +14,7 @@ Memory: <%= LinuxStat::ProcessInfo.memory.then { |x|
 	unless x
 		'Info Not Available'.freeze
 	else
-		"<strong>#{x.fdiv(1000)} MiB</strong>".html_safe
+		"<strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(x * 1000)}</strong>".html_safe
 	end
 }%>
 <br>
@@ -20,7 +22,7 @@ IO: <%= LinuxStat::ProcessInfo.total_io.then { |x|
 	if x.empty?
 		'Info Not Available'.freeze
 	else
-		"Read: <strong>#{x[:read_bytes].fdiv(1000 ** 2).round(2)} MiB</strong> | "\
-		"Write: <strong>#{x[:write_bytes].fdiv(1000 ** 2).round(2)} MiB</strong>".html_safe
+		"Read: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:read_bytes]}</strong> | "\
+		"Write: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:write_bytes]}</strong>".html_safe
 	end
 } %>

@@ -28,20 +28,20 @@ module IndexHelper
 	end
 
 	def memory_stat
-		"#{LinuxStat::Memory.used.fdiv(1048576).round(2)} GiB / "\
-		"#{LinuxStat::Memory.total.fdiv(1048576).round(2)} GiB "\
+		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Memory.used * 1000)}/ "\
+		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Memory.total * 1000)} "\
 		"( #{LinuxStat::Memory.percent_used}% )"
 	end
 
 	def swap_usage
 		devs = LinuxStat::Swap.list.map { |x|
 			"#{x[0]} => #{x[1].drop(1).tap(&:pop).reverse.map { |y|
-				"#{y.fdiv(1048576).round(2)} GiB"
+				"#{LinuxStat::PrettifyBytes.convert_short_decimal(y * 1000)}"
 			}.join(' / ')}"
 		}.join('<br>')
 
-		"#{LinuxStat::Swap.used.fdiv(1048576).round(2)} GiB / "\
-		"#{LinuxStat::Swap.total.fdiv(1048576).round(2)} GiB "\
+		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Swap.used.*(1000))}/ "\
+		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Swap.total.*(1000))} "\
 		"( #{LinuxStat::Swap.percent_used}% )<br>"\
 		"#{devs}".html_safe
 	end
