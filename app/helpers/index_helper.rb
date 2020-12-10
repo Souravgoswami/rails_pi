@@ -45,4 +45,10 @@ module IndexHelper
 		"( #{LinuxStat::Swap.percent_used}% )<br>"\
 		"#{devs}".html_safe
 	end
+
+	def net_usage
+		u = LinuxStat::Net.total_bytes
+		"Download: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
+		"Upload: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong>".html_safe
+	end
 end
