@@ -12,10 +12,14 @@ module IndexHelper
 	end
 
 	def cpu_usage
-		"Total: <strong>#{LinuxStat::CPU.total_usage}%</strong>"\
-		"<br>Core Usage: <strong>"\
-		"| #{LinuxStat::CPU.usages.values.join(' | ')} |"\
-		"</strong>".html_safe
+		usages = LinuxStat::CPU.usages(0.03).values
+		total = usages.shift
+		core_usages = usages.map.with_index { |x, i|
+			%Q(Core #{i} => <strong>#{x} %</strong>)
+		}.join('<br>')
+
+		"Total: <strong>#{total}%</strong>"\
+		"<br>#{core_usages}".html_safe
 	end
 
 	def uptime
@@ -42,13 +46,12 @@ module IndexHelper
 
 		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Swap.used.*(1000))}/ "\
 		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Swap.total.*(1000))} "\
-		"( #{LinuxStat::Swap.percent_used}% )<br>"\
-		"#{devs}".html_safe
+		"( #{LinuxStat::Swap.percent_used}% )<br>#{devs}".html_safe
 	end
 
 	def net_usage
 		u = LinuxStat::Net.total_bytes
-		"Download: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
-		"Upload: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong>".html_safe
+		"Total Download: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
+		"Total Upload: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong><br>".html_safe
 	end
 end
