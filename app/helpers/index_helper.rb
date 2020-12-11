@@ -1,19 +1,8 @@
 module IndexHelper
-	def processor
-		if File.readable?('/proc/cpuinfo'.freeze)
-			cpuinfo = IO.readlines('/proc/cpuinfo'.freeze)
-			model = cpuinfo.select { |x| x[/\Amodel\sname/] }
-			[model[0].split(?:)[1].strip, model.count]
-		else
-			[]
-		end
-
-		LinuxStat::CPU.model
-	end
-
 	def cpu_usage
-		usages = LinuxStat::CPU.usages(0.03).values
+		usages = LinuxStat::CPU.usages(0.05).values
 		total = usages.shift
+
 		core_usages = usages.map.with_index { |x, i|
 			%Q(Core #{i} => <strong>#{x} %</strong>)
 		}.join('<br>')
