@@ -8,10 +8,17 @@
 	<h1>System Stats</h1>
 </div>
 
-<% if Rails.env.production? %>
-	<div class="centrify"><h6>Warning! A production app could run in a container</h6></div>
-	<hr>
-<% end %>
+<div class="centrify" style="flex-direction: column">
+	<h5>
+		<%= image_tag 'ruby.svg', style: 'height: 30px ; display: inline-block' %>
+		Information provided by <a target="_blank" rel="noopener" href="https://github.com/souravgoswami/linux_stat">LinuxStat Ruby Gem</a>
+	</h5>
+
+	<% if Rails.env.production? %>
+		<h6>Warning! A production app could run in a container</h6>
+	<% end %>
+</div>
+<hr>
 
 <h4>OS</h4>
 <%= render 'stats/os' %>
