@@ -1,3 +1,7 @@
+Process Running: <strong><%= LinuxStat::ProcessInfo.running_time.to_i %> sec</strong>
+<br>
+Process Start Time: <strong><%= LinuxStat::ProcessInfo.start_time %></strong>
+<br>
 Command Line: <strong><%= LinuxStat::ProcessInfo.cmdline %></strong>
 <br>
 Command Name: <strong><%= LinuxStat::ProcessInfo.command_name %></strong>
@@ -13,10 +17,6 @@ Threads: <strong><%= LinuxStat::ProcessInfo.threads %></strong>
 Memory: <strong><%= LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::ProcessInfo.memory * 1000)%></strong>
 <br>
 IO: <%= LinuxStat::ProcessInfo.total_io.then { |x|
-	if x.empty?
-		'Info Not Available'.freeze
-	else
-		"Read: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:read_bytes]}</strong> | "\
-		"Write: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:write_bytes]}</strong>".html_safe
-	end
+	"Read: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:read_bytes]}</strong> | "\
+	"Write: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:write_bytes]}</strong>".html_safe
 } %>

@@ -22,4 +22,4 @@ end
 
 gem 'irb', require: false
 gem 'rdoc', require: false
-gem 'linux_stat', ">=0.6.3"
+gem 'linux_stat', ">=0.7.0"
