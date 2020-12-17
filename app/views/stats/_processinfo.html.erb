@@ -1,10 +1,8 @@
-Process Running: <strong><%= LinuxStat::ProcessInfo.running_time.to_i %> sec</strong>
-<br>
-Process Start Time: <strong><%= LinuxStat::ProcessInfo.start_time %></strong>
-<br>
 Command Line: <strong><%= LinuxStat::ProcessInfo.cmdline %></strong>
 <br>
-Command Name: <strong><%= LinuxStat::ProcessInfo.command_name %></strong>
+Command Name: <strong><%= LinuxStat::ProcessInfo.command_name %> (<%= LinuxStat::ProcessInfo.running_time.to_i %> sec)</strong>
+<br>
+Process Fired: <strong><%= LinuxStat::ProcessInfo.start_time.strftime("%A, %d %b %Y, at %H:%M:%S") %></strong>
 <br>
 Owner: <strong><%= LinuxStat::ProcessInfo.owner %></strong>
 <br>

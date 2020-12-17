@@ -11,7 +11,8 @@
 <div class="centrify" style="flex-direction: column">
 	<h5>
 		<%= image_tag 'ruby.svg', style: 'height: 30px ; display: inline-block' %>
-		Information provided by <a target="_blank" rel="noopener" href="https://github.com/souravgoswami/linux_stat">LinuxStat Ruby Gem</a>
+		Information provided by <a target="_blank" rel="noopener" href="https://github.com/souravgoswami/linux_stat">LinuxStat</a>
+		(v<%= LinuxStat::VERSION %>)
 	</h5>
 
 	<% if Rails.env.production? %>
