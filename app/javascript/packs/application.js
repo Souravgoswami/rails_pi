@@ -23,7 +23,7 @@ document.addEventListener('turbolinks:load', () => {
 				type: 'get',
 				dataType: 'script',
 			})
-		}, 750)
+		}, 500)
 	}
 
 	else if (!document.getElementById('systemStats') && interval) {

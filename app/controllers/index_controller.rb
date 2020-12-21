@@ -1,5 +1,8 @@
 class IndexController < ApplicationController
 	before_action :set_digits, only: %i[calculate render_results]
+	@@cpu_usage_thread = Thread.new { }
+	@@net_usage_thread = Thread.new { }
+	@@process_cpu_usage_thread = Thread.new { }
 
 	def home
 	end
@@ -24,11 +27,25 @@ class IndexController < ApplicationController
 	def api_example
 	end
 
+	$cpu_usage = {}.tap { |x| x.default = 0 }
+	$current_net_usage = {}.tap { |x| x.default = 0 }
+	$process_cpu_usage = 0
+
 	def system_stats
+		unless @@cpu_usage_thread.alive?
+			@@cpu_usage_thread = Thread.new { $cpu_usage = LinuxStat::CPU.usages(0.25) }
+		end
+
+		unless @@net_usage_thread.alive?
+			@@net_usage_thread = Thread.new { $current_net_usage = LinuxStat::Net.current_usage(0.25) }
+		end
+
+		unless @@process_cpu_usage_thread.alive?
+			@@process_cpu_usage_thread = Thread.new { $process_cpu_usage = LinuxStat::ProcessInfo.cpu_usage(sleep: 0.25) }
+		end
 	end
 
 	private
-
 	def set_digits
 		@digits = params[:digits].to_i.then { |x| x < 1 ? 100 : x }
 	end
@@ -48,6 +65,6 @@ class IndexController < ApplicationController
 			q, k, x = q * k, k + 1, x + 2
 		end while (str.length < n)
 
-		str.insert(1, ?.)
+		str.insert(1, ?..freeze)
 	end
 end

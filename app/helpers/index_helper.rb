@@ -1,14 +1,8 @@
 module IndexHelper
 	def cpu_usage
-		usages = LinuxStat::CPU.usages(0.05).values
-		total = usages.shift
-
-		core_usages = usages.map.with_index { |x, i|
-			%Q(Core #{i} => <strong>#{x} %</strong>)
-		}.join('<br>')
-
-		"Total: <strong>#{total}%</strong>"\
-		"<br>#{core_usages}".html_safe
+		"Total: #{sprintf "%.2f", $cpu_usage[0]} %<br>".concat(
+			$cpu_usage.except(0).map { |x| "Core #{x[0]} => #{sprintf "%.2f", x[1]} %" }.join('<br>').html_safe
+		).html_safe
 	end
 
 	def uptime
@@ -40,7 +34,21 @@ module IndexHelper
 
 	def net_usage
 		u = LinuxStat::Net.total_bytes
+
 		"Total Download: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
-		"Total Upload: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong><br>".html_safe
+		"Total Upload: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong><br>"\
+		"Current DL: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal $current_net_usage[:received]}/s</strong><br>"\
+		"Current U/L: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal $current_net_usage[:transmitted]}/s</strong>".html_safe
+	end
+
+	def process_cpu_usage
+		$process_cpu_usage
+	end
+
+	def nproc
+		total = LinuxStat::ProcessInfo.nproc
+		all = LinuxStat::CPU.online.count
+
+		"#{total} / #{all} (#{sprintf "%0.2f", total.*(100).fdiv(all)}%)"
 	end
 end

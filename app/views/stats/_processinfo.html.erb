@@ -6,7 +6,9 @@ Process Fired: <strong><%= LinuxStat::ProcessInfo.start_time.strftime("%A, %d %b
 <br>
 Owner: <strong><%= LinuxStat::ProcessInfo.owner %></strong>
 <br>
-CPU Usage: <strong><%= LinuxStat::ProcessInfo.cpu_usage.round(2) %>%</strong>
+CPU Usage: <strong><%= process_cpu_usage %>%</strong>
+<br>
+Available CPU Threads: <strong><%= nproc %></strong>
 <br>
 Last Executed CPU: <strong><%= LinuxStat::ProcessInfo.last_executed_cpu %></strong>
 <br>
