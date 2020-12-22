@@ -47,8 +47,8 @@ module IndexHelper
 
 	def nproc
 		total = LinuxStat::ProcessInfo.nproc
-		all = LinuxStat::CPU.online.count
+		online_count = LinuxStat::CPU.count_online
 
-		"#{total} / #{all} (#{sprintf "%0.2f", total.*(100).fdiv(all)}%)"
+		"#{total} / #{online_count} (#{sprintf "%0.2f", total.*(100).fdiv(online_count)}%)"
 	end
 end
