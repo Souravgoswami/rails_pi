@@ -197,6 +197,12 @@ pre.code code::before {
 	transform-origin: 50% 50% ;
 }
 
+.scroll-area {
+	display: block ;
+	max-height: 300px ;
+	overflow: auto ;
+}
+
 .link {
 	color: transparent ;
 	user-select: none ;

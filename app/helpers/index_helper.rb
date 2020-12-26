@@ -91,6 +91,22 @@ module IndexHelper
 			end
 
 			out
-		}.join('<br>').html_safe
+		}.join('<br>'.freeze).html_safe
+	end
+
+	def pci_stats
+		LinuxStat::PCI.devices_info.map.with_index { |x, i|
+			id = x[:id]
+			driver = x &.[](:kernel_driver)
+
+			hwdata = x[:hwdata]
+			vendor = hwdata &.[](:vendor)
+			product = hwdata &.[](:product)
+
+			vendor_str = vendor ? vendor << ' '.freeze : ''.freeze
+			product_str = product ? "#{product} from " : ''.freeze
+
+			"<strong>#{sprintf "%03d", i + 1}.</strong> #{id} #{product_str}#{vendor_str}(driver: #{driver})"
+		}.join('<br>'.freeze).html_safe
 	end
 end

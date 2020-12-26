@@ -1,3 +1,1 @@
-Total Processes: <strong><%= LinuxStat::Process.count %></strong>
-<br>
-Process Names: <strong><%= LinuxStat::Process.names.values.join(', '.freeze) %></strong>
+<strong><%= LinuxStat::Process.names.values.tap(&:sort!).join(', '.freeze) %></strong>
