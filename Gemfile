@@ -6,7 +6,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'linux_stat', ">=1.1.0"
+gem 'linux_stat', ">=1.1.1"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
