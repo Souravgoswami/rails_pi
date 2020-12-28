@@ -6,7 +6,7 @@ module IndexHelper
 	end
 
 	def uptime
-		u = LinuxStat::OS.uptime.values.map { |x|
+		u = LS::OS.uptime.values.map { |x|
 			x = x.to_i
 			x < 10 ? ?0.freeze + x.to_s : x.to_s
 		}
@@ -15,30 +15,30 @@ module IndexHelper
 	end
 
 	def memory_stat
-		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Memory.used * 1000)}/ "\
-		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Memory.total * 1000)} "\
-		"( #{LinuxStat::Memory.percent_used}% )"
+		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.used * 1000)}/ "\
+		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.total * 1000)} "\
+		"( #{LS::Memory.percent_used}% )"
 	end
 
 	def swap_usage
-		devs = LinuxStat::Swap.list.map { |x|
+		devs = LS::Swap.list.map { |x|
 			"#{x[0]} => #{x[1].drop(1).tap(&:pop).reverse.map { |y|
-				"#{LinuxStat::PrettifyBytes.convert_short_decimal(y * 1000)}"
+				"#{LS::PrettifyBytes.convert_short_decimal(y * 1000)}"
 			}.join(' / ')}"
 		}.join('<br>')
 
-		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Swap.used.*(1000))}/ "\
-		"#{LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Swap.total.*(1000))} "\
-		"( #{LinuxStat::Swap.percent_used}% )<br>#{devs}".html_safe
+		"#{LS::PrettifyBytes.convert_short_decimal(LS::Swap.used.*(1000))}/ "\
+		"#{LS::PrettifyBytes.convert_short_decimal(LS::Swap.total.*(1000))} "\
+		"( #{LS::Swap.percent_used}% )<br>#{devs}".html_safe
 	end
 
 	def net_usage
-		u = LinuxStat::Net.total_bytes
+		u = LS::Net.total_bytes
 
-		"Total Download: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
-		"Total Upload: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong><br>"\
-		"Current DL: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal $current_net_usage[:received]}/s</strong><br>"\
-		"Current U/L: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal $current_net_usage[:transmitted]}/s</strong>".html_safe
+		"Total Download: <strong>#{LS::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
+		"Total Upload: <strong>#{LS::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong><br>"\
+		"Current DL: <strong>#{LS::PrettifyBytes.convert_short_decimal $current_net_usage[:received]}/s</strong><br>"\
+		"Current U/L: <strong>#{LS::PrettifyBytes.convert_short_decimal $current_net_usage[:transmitted]}/s</strong>".html_safe
 	end
 
 	def process_cpu_usage
@@ -46,8 +46,8 @@ module IndexHelper
 	end
 
 	def nproc
-		total = LinuxStat::ProcessInfo.nproc
-		online_count = LinuxStat::CPU.count_online
+		total = LS::ProcessInfo.nproc
+		online_count = LS::CPU.count_online
 
 		"#{total} / #{online_count} (#{sprintf "%0.2f", total.*(100).fdiv(online_count)}%)"
 	end
@@ -56,7 +56,7 @@ module IndexHelper
 	$usb_devs_bef = []
 
 	def usb_stats
-		$usb_devs = LinuxStat::USB.devices_stat
+		$usb_devs = LS::USB.devices_stat
 
 		plugged = $usb_devs - $usb_devs_bef
 		$usb_devs_bef = $usb_devs
@@ -95,9 +95,10 @@ module IndexHelper
 	end
 
 	def pci_stats
-		LinuxStat::PCI.devices_info.map.with_index { |x, i|
+		LS::PCI.devices_info.map.with_index { |x, i|
 			id = x[:id]
 			driver = x &.[](:kernel_driver)
+			driver_str = driver ? "(driver: #{driver})" : ''.freeze
 
 			hwdata = x[:hwdata]
 			vendor = hwdata &.[](:vendor)
@@ -106,7 +107,7 @@ module IndexHelper
 			vendor_str = vendor ? vendor << ' '.freeze : ''.freeze
 			product_str = product ? "#{product} from " : ''.freeze
 
-			"<strong>#{sprintf "%03d", i + 1}.</strong> #{id} #{product_str}#{vendor_str}(driver: #{driver})"
+			"<strong>#{sprintf "%03d", i + 1}.</strong> #{id} #{product_str}#{vendor_str}#{driver_str}"
 		}.join('<br>'.freeze).html_safe
 	end
 end

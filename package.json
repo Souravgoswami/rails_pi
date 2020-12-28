@@ -1,5 +1,5 @@
 {
-  "name": "Pi",
+  "name": "pi-calculator",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",

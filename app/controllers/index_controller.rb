@@ -33,15 +33,15 @@ class IndexController < ApplicationController
 
 	def system_stats
 		unless @@cpu_usage_thread.alive?
-			@@cpu_usage_thread = Thread.new { $cpu_usage = LinuxStat::CPU.usages(0.25) }
+			@@cpu_usage_thread = Thread.new { $cpu_usage = LS::CPU.usages(0.25) }
 		end
 
 		unless @@net_usage_thread.alive?
-			@@net_usage_thread = Thread.new { $current_net_usage = LinuxStat::Net.current_usage(0.25) }
+			@@net_usage_thread = Thread.new { $current_net_usage = LS::Net.current_usage(0.25) }
 		end
 
 		unless @@process_cpu_usage_thread.alive?
-			@@process_cpu_usage_thread = Thread.new { $process_cpu_usage = LinuxStat::ProcessInfo.cpu_usage(sleep: 0.25) }
+			@@process_cpu_usage_thread = Thread.new { $process_cpu_usage = LS::ProcessInfo.cpu_usage(sleep: 0.25) }
 		end
 	end
 

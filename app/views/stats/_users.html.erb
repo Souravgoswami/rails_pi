@@ -1,9 +1,9 @@
-Users: <strong><%= LinuxStat::User.list.join(', '.freeze) %></strong>
+Users: <strong><%= LS::User.list.join(', '.freeze) %></strong>
 <br>
 <br>
 
-Username: <strong><%= LinuxStat::User.get_user %></strong>
+Username: <strong><%= LS::User.get_user %></strong>
 <br>
-IDs: UID: <strong><%= LinuxStat::Sysconf.get_uid %></strong> | GID: <strong><%= LinuxStat::Sysconf.get_gid %></strong> | EUID: <strong><%= LinuxStat::Sysconf.get_euid %></strong>
+IDs: UID: <strong><%= LS::Sysconf.get_uid %></strong> | GID: <strong><%= LS::Sysconf.get_gid %></strong> | EUID: <strong><%= LS::Sysconf.get_euid %></strong>
 <br>
-Home: <strong><%= LinuxStat::User.home_by_gid %></strong>
+Home: <strong><%= LS::User.home_by_gid %></strong>

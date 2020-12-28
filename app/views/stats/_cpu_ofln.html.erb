@@ -1,1 +1,1 @@
-<%= LinuxStat::CPU.offline.then { |x| x.empty? ? 'None'.freeze : x.join(', '.freeze) } %>
+<%= LS::CPU.offline.then { |x| x.empty? ? 'None'.freeze : x.join(', '.freeze) } %>

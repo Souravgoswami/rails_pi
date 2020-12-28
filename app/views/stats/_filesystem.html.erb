@@ -1,5 +1,5 @@
-Total: <strong><%= LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Filesystem.total) %></strong>
+Total: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::Filesystem.total) %></strong>
 <br>
-Used: <strong><%= LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Filesystem.used) %></strong>
+Used: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::Filesystem.used) %></strong>
 <br>
-Free: <strong><%= LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::Filesystem.free) %></strong>
+Free: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::Filesystem.free) %></strong>

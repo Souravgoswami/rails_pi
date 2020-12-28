@@ -1,22 +1,22 @@
-Command Line: <strong><%= LinuxStat::ProcessInfo.cmdline %></strong>
+Command Line: <strong><%= LS::ProcessInfo.cmdline %></strong>
 <br>
-Command Name: <strong><%= LinuxStat::ProcessInfo.command_name %> (<%= LinuxStat::ProcessInfo.running_time.to_i %> sec)</strong>
+Command Name: <strong><%= LS::ProcessInfo.command_name %> (<%= LS::ProcessInfo.running_time.to_i %> sec)</strong>
 <br>
-Process Fired: <strong><%= LinuxStat::ProcessInfo.start_time.strftime("%A, %d %b %Y, at %H:%M:%S") %></strong>
+Process Fired: <strong><%= LS::ProcessInfo.start_time.strftime("%A, %d %b %Y, at %H:%M:%S") %></strong>
 <br>
-Owner: <strong><%= LinuxStat::ProcessInfo.owner %></strong>
+Owner: <strong><%= LS::ProcessInfo.owner %></strong>
 <br>
 CPU Usage: <strong><%= process_cpu_usage %>%</strong>
 <br>
 Available CPU Threads: <strong><%= nproc %></strong>
 <br>
-Last Executed CPU: <strong><%= LinuxStat::ProcessInfo.last_executed_cpu %></strong>
+Last Executed CPU: <strong><%= LS::ProcessInfo.last_executed_cpu %></strong>
 <br>
-Threads: <strong><%= LinuxStat::ProcessInfo.threads %></strong>
+Threads: <strong><%= LS::ProcessInfo.threads %></strong>
 <br>
-Memory: <strong><%= LinuxStat::PrettifyBytes.convert_short_decimal(LinuxStat::ProcessInfo.memory * 1000)%></strong>
+Memory: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::ProcessInfo.memory * 1000)%></strong>
 <br>
-IO: <%= LinuxStat::ProcessInfo.total_io.then { |x|
-	"Read: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:read_bytes]}</strong> | "\
-	"Write: <strong>#{LinuxStat::PrettifyBytes.convert_short_decimal x[:write_bytes]}</strong>".html_safe
+IO: <%= LS::ProcessInfo.total_io.then { |x|
+	"Read: <strong>#{LS::PrettifyBytes.convert_short_decimal x[:read_bytes]}</strong> | "\
+	"Write: <strong>#{LS::PrettifyBytes.convert_short_decimal x[:write_bytes]}</strong>".html_safe
 } %>
