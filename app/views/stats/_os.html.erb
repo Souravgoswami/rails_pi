@@ -1,6 +1,8 @@
-<%= LS::OS.distribution %> <%= LS::OS.machine %> ( <%= LS::OS.bits %> bits )
+<%= LS::OS.distribution %> <%= LS::OS.distrib_version %> ( <%= LS::OS.machine %> <%= LS::OS.bits %> bits )
 <br>
 Root: <strong><%= LS::Mounts.root %></strong>
+<br>
+HostName: <strong><%= LS::Sysconf.hostname %></strong>
 <br>
 NodeName: <strong><%= LS::Uname.nodename %></strong>
 <br>
