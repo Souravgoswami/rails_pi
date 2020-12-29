@@ -104,7 +104,7 @@ module IndexHelper
 			vendor = hwdata &.[](:vendor)
 			product = hwdata &.[](:product)
 
-			vendor_str = vendor ? vendor << ' '.freeze : ''.freeze
+			vendor_str = vendor ? vendor + ' '.freeze : ''.freeze
 			product_str = product ? "#{product} from " : ''.freeze
 
 			"<strong>#{sprintf "%03d", i + 1}.</strong> #{id} #{product_str}#{vendor_str}#{driver_str}"
