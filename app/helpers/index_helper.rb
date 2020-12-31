@@ -97,7 +97,7 @@ module IndexHelper
 	def pci_stats
 		LS::PCI.devices_info.map.with_index { |x, i|
 			id = x[:id]
-			driver = x &.[](:kernel_driver)
+			driver = x[:kernel_driver]
 			driver_str = driver ? "(driver: #{driver})" : ''.freeze
 
 			hwdata = x[:hwdata]
@@ -109,5 +109,31 @@ module IndexHelper
 
 			"<strong>#{sprintf "%03d", i + 1}.</strong> #{id} #{product_str}#{vendor_str}#{driver_str}"
 		}.join('<br>'.freeze).html_safe
+	end
+
+	def thermal_zone
+		sensors = LS::Thermal.temperatures.sort_by { |x| x[:label] || x[:name] || x[:path] }.map.with_index { |x, i|
+			t = x[:temperature]
+			temp_c = sprintf "%.1f", t
+			temp_f = sprintf "%.1f", t.*(1.8).+(32).to_f
+
+			label = x[:label] || x[:name] || x[:path]
+
+			"<strong>#{sprintf '%03d', i + 1}.</strong> #{label}: #{temp_c}&#176C (#{temp_f}&#176F)"
+		}.join('<br>')
+
+		fans = LS::Thermal.fans.sort_by { |x| x[:label] || x[:name] || x[:path] }.map.with_index { |x, i|
+			rpm = x[:rpm]
+			label = x[:label] || x[:name] || x[:path]
+
+			"<strong>#{sprintf '%03d', i + 1}.</strong> #{label}, RPM: #{rpm}"
+		}.join('<br>')
+
+		<<~EOF.html_safe
+			<h5>Sensors (#{LS::Thermal.count_sensors})</h5>
+			#{sensors}
+			<h5>Fans (#{LS::Thermal.count_fans})</h5>
+			#{fans}
+		EOF
 	end
 end
