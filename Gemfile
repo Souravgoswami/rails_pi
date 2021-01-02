@@ -7,6 +7,7 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'linux_stat', "1.3.0"
+gem 'big_pie', "0.1.1"
 
 group :development do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

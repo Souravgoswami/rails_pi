@@ -1,4 +1,5 @@
 class IndexController < ApplicationController
+	TIMEOUT = 30
 	before_action :set_digits, only: %i[calculate render_results]
 	@@cpu_usage_thread = Thread.new { }
 	@@net_usage_thread = Thread.new { }
@@ -9,19 +10,33 @@ class IndexController < ApplicationController
 
 	def calculate
 		start_time = Time.now
+		@timeout = TIMEOUT
 
-		@str = find_pi(@digits)
-		@time = Time.now - start_time
-		render :calculate
+		begin
+			Timeout.timeout(@timeout) do
+				@str = find_pi(@digits)
+				@time = Time.now - start_time
+				render :calculate
+			end
+		rescue Timeout::Error
+			render :error_calculate
+		end
 	end
 
 	def render_results
+		@timeout = TIMEOUT
 		start_time = Time.now
-		@str = find_pi(@digits)
-		@time = Time.now - start_time
 
-		msg = {digits: @digits, value: @str, time: @time}
+		@str = begin
+			Timeout.timeout(@timeout) { find_pi(@digits) }
+		rescue Timeout::Error
+			find_pi(5000)
+		end
+
+		@time = Time.now - start_time
+		msg = {digits: @str.length - 2, value: @str, time: @time}
 		render :json => msg
+
 	end
 
 	def api_example
@@ -51,20 +66,7 @@ class IndexController < ApplicationController
 	end
 
 	def find_pi(n)
-		q = t = k = 1
-		m = x = 3
-		n, r = n + 1, 0
-		str = ''
-
-		if (4 * q + r - t < m * t)
-			str << m.to_s
-			r, m, q = 10 * (r - m * t), 10.*(3 * q + r) / t - 10 * m, q * 10
-		else
-			t *= x
-			m, r = q.*(7 * k + 2).+(r * x) / t, x * (2 * q + r)
-			q, k, x = q * k, k + 1, x + 2
-		end while (str.length < n)
-
-		str.insert(1, ?..freeze)
+		n = 100 if n > 2 ** 60
+		BigPie.calculate(n + 1).join.tap { |x| x[1, 0] = ?..freeze }
 	end
 end
