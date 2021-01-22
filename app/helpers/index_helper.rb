@@ -11,13 +11,17 @@ module IndexHelper
 			x < 10 ? ?0.freeze + x.to_s : x.to_s
 		}
 
-		"Uptime: <strong>#{u.join(?:)}</strong>".html_safe
+		"Uptime: <strong>#{u.join(?:)} (#{LS::OS.uptime_i}s)</strong>".html_safe
 	end
 
 	def memory_stat
 		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.used * 1000)}/ "\
 		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.total * 1000)} "\
-		"( #{LS::Memory.percent_used}% )"
+		"( #{LS::Memory.percent_used}% )<br>"\
+		"Shared: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.sharedram)}</strong><br>"\
+		"Buffer: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.bufferram)}</strong><br>"\
+		"Total High: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.totalhigh)}</strong><br>"\
+		"Free High: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.freehigh)}</strong>".html_safe
 	end
 
 	def swap_usage

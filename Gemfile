@@ -6,7 +6,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'linux_stat', "1.4.0"
+gem 'linux_stat', "1.5.1"
 gem 'big_pie', "0.1.2"
 
 group :development do

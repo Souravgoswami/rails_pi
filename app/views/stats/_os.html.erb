@@ -7,3 +7,5 @@ HostName: <strong><%= LS::Sysconf.hostname %></strong>
 NodeName: <strong><%= LS::Uname.nodename %></strong>
 <br>
 IP: <strong><%= LS::Net.ipv4_private %></strong>
+<br>
+Load Average: <strong><%= [1,5,15].zip(LS::Sysinfo.loads).map { |x| "#{x[0]}: #{x[1].round(2)}" }.join(', '.freeze) %></strong>
