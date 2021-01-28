@@ -56,9 +56,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    big_pie (0.1.2)
+    big_pie (0.1.4)
     bindex (0.8.1)
-    bootsnap (1.5.1)
+    bootsnap (1.6.0)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -73,7 +73,7 @@ GEM
     io-console (0.5.7)
     irb (1.3.2)
       reline (>= 0.1.5)
-    linux_stat (1.5.1)
+    linux_stat (1.6.0)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -89,7 +89,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
     minitest (5.14.3)
-    msgpack (1.3.3)
+    msgpack (1.4.1)
     nio4r (2.5.4)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
@@ -182,11 +182,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  big_pie (= 0.1.2)
+  big_pie (= 0.1.4)
   bootsnap (>= 1.4.2)
   byebug
   irb
-  linux_stat (= 1.5.1)
+  linux_stat (= 1.6.0)
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)

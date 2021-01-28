@@ -15,13 +15,17 @@ module IndexHelper
 	end
 
 	def memory_stat
+		_stat = LS::Sysinfo.stat
+		_stat.default = 0
+
 		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.used * 1000)}/ "\
-		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.total * 1000)} "\
+		"#{LS::PrettifyBytes.convert_short_decimal(_stat[:totalram])} "\
 		"( #{LS::Memory.percent_used}% )<br>"\
-		"Shared: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.sharedram)}</strong><br>"\
-		"Buffer: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.bufferram)}</strong><br>"\
-		"Total High: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.totalhigh)}</strong><br>"\
-		"Free High: <strong>#{LS::PrettifyBytes.convert_short_decimal(LS::Sysinfo.freehigh)}</strong>".html_safe
+		"Free: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:freeram])}</strong><br>"\
+		"Shared: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:sharedram])}</strong><br>"\
+		"Buffer: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:bufferram])}</strong><br>"\
+		"Total High: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:totalhigh])}</strong><br>"\
+		"Free High: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:freehigh])}</strong>".html_safe
 	end
 
 	def swap_usage
