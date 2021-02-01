@@ -11,7 +11,8 @@ module IndexHelper
 			x < 10 ? ?0.freeze + x.to_s : x.to_s
 		}
 
-		"Uptime: <strong>#{u.join(?:)} (#{LS::OS.uptime_i}s)</strong>".html_safe
+		"Uptime: <strong>#{u.join(?:)}<br></strong>"\
+		"Uptime Second: <strong>#{LS::OS.uptime_f}s</strong>".html_safe
 	end
 
 	def memory_stat
