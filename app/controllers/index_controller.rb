@@ -9,13 +9,13 @@ class IndexController < ApplicationController
 	end
 
 	def calculate
-		start_time = Time.now
-		@timeout = TIMEOUT
+		start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 		begin
-			Timeout.timeout(@timeout) do
+			Timeout.timeout(TIMEOUT) do
 				@str = find_pi(@digits)
-				@time = Time.now - start_time
+				end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+				@time = end_time - start_time
 				render :calculate
 			end
 		rescue Timeout::Error
@@ -24,16 +24,16 @@ class IndexController < ApplicationController
 	end
 
 	def render_results
-		@timeout = TIMEOUT
-		start_time = Time.now
+		start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 		@str = begin
-			Timeout.timeout(@timeout) { find_pi(@digits) }
+			Timeout.timeout(TIMEOUT) { find_pi(@digits) }
 		rescue Timeout::Error
 			find_pi(5000)
 		end
 
-		@time = Time.now - start_time
+		end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+		@time = end_time - start_time
 		msg = {digits: @str.length - 2, value: @str, time: @time}
 		render :json => msg
 
