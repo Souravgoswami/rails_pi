@@ -8,15 +8,17 @@ Owner: <strong><%= LS::ProcessInfo.owner %></strong>
 <br>
 CPU Usage: <strong><%= process_cpu_usage %>%</strong>
 <br>
+CPU Time: <strong><%= LS::ProcessInfo.cpu_time %>s</strong>
+<br>
 Available CPU Threads: <strong><%= nproc %></strong>
 <br>
 Last Executed CPU: <strong><%= LS::ProcessInfo.last_executed_cpu %></strong>
 <br>
 Threads: <strong><%= LS::ProcessInfo.threads %></strong>
 <br>
-Memory: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::ProcessInfo.memory * 1000)%></strong>
+Memory: <strong><%= pb(LS::ProcessInfo.memory * 1000)%></strong>
 <br>
 IO: <%= LS::ProcessInfo.total_io.then { |x|
-	"Read: <strong>#{LS::PrettifyBytes.convert_short_decimal x[:read_bytes]}</strong> | "\
-	"Write: <strong>#{LS::PrettifyBytes.convert_short_decimal x[:write_bytes]}</strong>".html_safe
+	"Read: <strong>#{pb x[:read_bytes]}</strong> | "\
+	"Write: <strong>#{pb x[:write_bytes]}</strong>".html_safe
 } %>

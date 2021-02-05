@@ -19,35 +19,35 @@ module IndexHelper
 		_stat = LS::Sysinfo.stat
 		_stat.default = 0
 
-		"#{LS::PrettifyBytes.convert_short_decimal(LS::Memory.used * 1000)}/ "\
-		"#{LS::PrettifyBytes.convert_short_decimal(_stat[:totalram])} "\
+		"#{pb(LS::Memory.used * 1000)}/ "\
+		"#{pb(_stat[:totalram])} "\
 		"( #{LS::Memory.percent_used}% )<br>"\
-		"Free: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:freeram])}</strong><br>"\
-		"Shared: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:sharedram])}</strong><br>"\
-		"Buffer: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:bufferram])}</strong><br>"\
-		"Total High: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:totalhigh])}</strong><br>"\
-		"Free High: <strong>#{LS::PrettifyBytes.convert_short_decimal(_stat[:freehigh])}</strong>".html_safe
+		"Free: <strong>#{pb(_stat[:freeram])}</strong><br>"\
+		"Shared: <strong>#{pb(_stat[:sharedram])}</strong><br>"\
+		"Buffer: <strong>#{pb(_stat[:bufferram])}</strong><br>"\
+		"Total High: <strong>#{pb(_stat[:totalhigh])}</strong><br>"\
+		"Free High: <strong>#{pb(_stat[:freehigh])}</strong>".html_safe
 	end
 
 	def swap_usage
 		devs = LS::Swap.list.map { |x|
 			"#{x[0]} => #{x[1].drop(1).tap(&:pop).reverse.map { |y|
-				"#{LS::PrettifyBytes.convert_short_decimal(y * 1000)}"
+				"#{pb(y * 1000)}"
 			}.join(' / ')}"
 		}.join('<br>')
 
-		"#{LS::PrettifyBytes.convert_short_decimal(LS::Swap.used.*(1000))}/ "\
-		"#{LS::PrettifyBytes.convert_short_decimal(LS::Swap.total.*(1000))} "\
+		"#{pb(LS::Swap.used.*(1000))}/ "\
+		"#{pb(LS::Swap.total.*(1000))} "\
 		"( #{LS::Swap.percent_used}% )<br>#{devs}".html_safe
 	end
 
 	def net_usage
 		u = LS::Net.total_bytes
 
-		"Total Download: <strong>#{LS::PrettifyBytes.convert_short_decimal(u[:received])}</strong><br>"\
-		"Total Upload: <strong>#{LS::PrettifyBytes.convert_short_decimal(u[:transmitted])}</strong><br>"\
-		"Current DL: <strong>#{LS::PrettifyBytes.convert_short_decimal $current_net_usage[:received]}/s</strong><br>"\
-		"Current U/L: <strong>#{LS::PrettifyBytes.convert_short_decimal $current_net_usage[:transmitted]}/s</strong>".html_safe
+		"Total Download: <strong>#{pb(u[:received])}</strong><br>"\
+		"Total Upload: <strong>#{pb(u[:transmitted])}</strong><br>"\
+		"Current DL: <strong>#{pb $current_net_usage[:received]}/s</strong><br>"\
+		"Current U/L: <strong>#{pb $current_net_usage[:transmitted]}/s</strong>".html_safe
 	end
 
 	def process_cpu_usage

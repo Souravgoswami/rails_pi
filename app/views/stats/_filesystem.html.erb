@@ -1,5 +1,5 @@
-Total: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::Filesystem.total) %></strong>
+Total: <strong><%= pb(LS::Filesystem.total) %></strong>
 <br>
-Used: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::Filesystem.used) %></strong>
+Used: <strong><%= pb(LS::Filesystem.used) %></strong>
 <br>
-Free: <strong><%= LS::PrettifyBytes.convert_short_decimal(LS::Filesystem.free) %></strong>
+Free: <strong><%= pb(LS::Filesystem.free) %></strong>

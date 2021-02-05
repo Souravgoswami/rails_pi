@@ -22,4 +22,8 @@ module ApplicationHelper
 		_binding = binding
 		code.each_line.map { |x| %[\n<code class="code">#{x}<span class="return-value"> # => #{_binding.eval(x)}</span></code>] }.join.html_safe
 	end
+
+	def pb(n)
+		LS::PrettifyBytes.convert_short_decimal(n)
+	end
 end
