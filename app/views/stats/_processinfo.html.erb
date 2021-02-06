@@ -8,7 +8,7 @@ Owner: <strong><%= LS::ProcessInfo.owner %></strong>
 <br>
 CPU Usage: <strong><%= process_cpu_usage %>%</strong>
 <br>
-CPU Time: <strong><%= LS::ProcessInfo.cpu_time %>s</strong>
+CPU Time: <strong><%= "%05.2f" % LS::ProcessInfo.cpu_time.round(2) %>s</strong>
 <br>
 Available CPU Threads: <strong><%= nproc %></strong>
 <br>

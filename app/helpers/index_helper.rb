@@ -6,12 +6,13 @@ module IndexHelper
 	end
 
 	def uptime
-		u = LS::OS.uptime.values.map { |x|
-			x = x.to_i
-			x < 10 ? ?0.freeze + x.to_s : x.to_s
-		}
+		u = LS::OS.uptime
+		h = "%02d" % u[:hour]
+		m = "%02d" % u[:minute]
+		s = "%02d" % u[:second]
+		j = "%02d" % u[:jiffy]
 
-		"Uptime: <strong>#{u.join(?:)}<br></strong>"\
+		"Uptime: <strong>#{h}:#{m}:#{s}:#{j}<br></strong>"\
 		"Uptime Second: <strong>#{LS::OS.uptime_f}s</strong>".html_safe
 	end
 
