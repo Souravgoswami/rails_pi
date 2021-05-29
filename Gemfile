@@ -22,3 +22,4 @@ end
 
 gem 'irb', require: false
 gem 'rdoc', require: false
+gem 'bundler', '2.1.4'
