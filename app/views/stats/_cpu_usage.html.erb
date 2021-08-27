@@ -1,1 +1,16 @@
-<%= cpu_usage %>
+<table class="styled">
+	<thead>
+		<tr>
+			<th>CPU</th>
+			<th>Usage</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% cpu_usage.each do |x| %>
+			<tr>
+				<td><%= x[0] == 0 ? "Total" : "Core #{x[0]}" %></td>
+				<td><%= sprintf "%05.2f%%", x[1] %></td>
+		<% end %>
+	</tbody>
+</table>

@@ -1,8 +1,6 @@
 module IndexHelper
 	def cpu_usage
-		"Total: #{sprintf "%.2f", $cpu_usage[0]} %<br>".concat(
-			$cpu_usage.except(0).map { |x| "Core #{x[0]} => #{sprintf "%.2f", x[1]} %" }.join('<br>').html_safe
-		).html_safe
+		$cpu_usage
 	end
 
 	def uptime
@@ -45,10 +43,12 @@ module IndexHelper
 	def net_usage
 		u = LS::Net.total_bytes
 
-		"Total Download: <strong>#{pb(u[:received])}</strong><br>"\
-		"Total Upload: <strong>#{pb(u[:transmitted])}</strong><br>"\
-		"Current DL: <strong>#{pb $current_net_usage[:received]}/s</strong><br>"\
-		"Current U/L: <strong>#{pb $current_net_usage[:transmitted]}/s</strong>".html_safe
+		[
+			pb(u[:received]),
+			pb(u[:transmitted]),
+			"#{pb($current_net_usage[:received])}/s",
+			"#{pb($current_net_usage[:transmitted])}/s"
+		]
 	end
 
 	def process_cpu_usage

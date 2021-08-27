@@ -1,1 +1,17 @@
-<%= net_usage %>
+<table class="styled">
+	<thead>
+		<th>Total Download</th>
+		<th>Total Upload</th>
+		<th>Current Download</th>
+		<th>Current Upload</th>
+
+	</thead>
+
+	<tbody>
+		<tr>
+			<% net_usage.each do |x| %>
+				<td><%= x %></td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>

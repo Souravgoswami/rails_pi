@@ -1,0 +1,21 @@
+<table class="styled">
+	<thead>
+		<tr>
+			<th>CPU</th>
+			<th>User</th>
+			<th>Nice</th>
+			<th>System</th>
+			<th>Idle</th>
+			<th>IO Wait</th>
+			<th>IRQ</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% LS::CPU.times.each_with_index do |x, i| %>
+			<tr>
+				<%= render 'stats/cpu_time_template', x: x, i: i %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

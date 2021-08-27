@@ -1,0 +1,7 @@
+<td><%= i == 0 ? "Total" : sprintf("%d - %s", i, x[:cpu]) %></td>
+<td><%= "%04.2fs" % x[:user] %></td>
+<td><%= "%04.2fs" % x[:nice] %></td>
+<td><%= "%04.2fs" % x[:system] %></td>
+<td><%= "%04.2fs" % x[:idle] %></td>
+<td><%= "%04.2fs" % x[:iowait] %></td>
+<td><%= "%04.2fs" % x[:irq] %></td>

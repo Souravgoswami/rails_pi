@@ -383,3 +383,23 @@ pre.code code::before {
 		text-align: center ;
 	}
 }
+
+table.styled {
+	border-collapse: collapse ;
+	width: 100% ;
+
+	thead {
+		font-weight: bold ;
+		background-color: transparent ;
+	}
+
+	th, td {
+		min-width: calc(100%/8) ;
+		text-align: left ;
+		padding: 12px 8px ;
+	}
+
+	tbody tr:nth-child(odd) {
+		background-color: #fffb ;
+	}
+}
