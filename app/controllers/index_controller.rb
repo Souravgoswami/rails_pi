@@ -48,7 +48,24 @@ class IndexController < ApplicationController
 
 	def system_stats
 		unless @@cpu_usage_thread.alive?
-			@@cpu_usage_thread = Thread.new { $cpu_usage = LS::CPU.usages(0.25) }
+			@@cpu_usage_thread = Thread.new {
+				physical = LS::CPU.physical_cores.map(&:next)
+				hyperthreaded = LS::CPU.hyperthreaded_cores.map(&:next)
+
+				cpu_usages = LS::CPU.usages(0.25).to_a
+
+				cpu_usages[0].push(:All)
+
+				physical.each { |x|
+					cpu_usages.find { |y| y[0] == x } &.push('Physcical CPU')
+				}
+
+				hyperthreaded.each { |x|
+					cpu_usages.find { |y| y[0] == x } &.push('Hyperthreaded CPU')
+				}
+
+				$cpu_usage = cpu_usages
+			}
 		end
 
 		unless @@net_usage_thread.alive?

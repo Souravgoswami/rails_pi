@@ -3,6 +3,7 @@
 		<tr>
 			<th>CPU</th>
 			<th>Usage</th>
+			<th>CPU Type</th>
 		</tr>
 	</thead>
 
@@ -11,6 +12,7 @@
 			<tr>
 				<td><%= x[0] == 0 ? "Total" : "Core #{x[0]}" %></td>
 				<td><%= sprintf "%05.2f%%", x[1] %></td>
+				<td><%= x[2] %></td>
 		<% end %>
 	</tbody>
 </table>

@@ -6,7 +6,7 @@ gem 'sass-rails'
 gem 'webpacker'
 gem 'turbolinks'
 gem 'bootsnap', require: false
-gem 'linux_stat', ">= 2.4.0"
+gem 'linux_stat', "2.5.1"
 gem 'big_pie', "0.1.4"
 
 # Date 3.1.0 has a bug, and won't install, use date 3.1.1
